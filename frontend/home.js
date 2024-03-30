@@ -20,7 +20,7 @@ window.onload = async () => {
         let date_of_serviceDOM = document.querySelector("input[name=date_of_service]");
         let initial_symptomsDOM = document.querySelector("input[name=initial_symptoms]");
         let diagnosisDOM = document.querySelector("input[name=diagnosis]");
-        let treatment_and_medicationDOM = document.querySelector("input[name=treatment_and_medication]");
+        let treatment_and_prescribed_medicationDOM = document.querySelector("input[name=treatment_and_prescribed_medication]");
         let appointment_dateDOM = document.querySelector("input[name=appointment_date]");
         let attending_physicianDOM = document.querySelector("input[name=attending_physician]");
         let appointment_detailsDOM = document.querySelector("input[name=appointment_details]");
@@ -31,7 +31,7 @@ window.onload = async () => {
         date_of_serviceDOM.value = MRS.date_of_service;
         initial_symptomsDOM.value = MRS.initial_symptoms;
         diagnosisDOM.value = MRS.diagnosis;
-        treatment_and_medicationDOM.value = MRS.treatment_and_medication;
+        treatment_and_prescribed_medicationDOM.value = MRS.treatment_and_prescribed_medication;
         appointment_dateDOM.value = MRS.appointment_date;
         attending_physicianDOM.value = MRS.attending_physician;
         appointment_detailsDOM.value = MRS.appointment_details;    
@@ -64,7 +64,7 @@ const validateData = (userData) => {
     if (!userData.diagnosis) {
       errors.push('กรุณากรอกการวินิจฉัย')
     }
-    if (!userData.treatment_and_medication) {
+    if (!userData.treatment_and_prescribed_medication) {
       errors.push('กรุณากรอกการรักษาและยาที่จ่าย')
     }
     if (!userData.appointment_date) {
@@ -79,34 +79,21 @@ const validateData = (userData) => {
     return errors
   }
 
-
-const submitData = async () => {
+  const submitData = async () => {
     let messageDOM = document.getElementById('message');
 
     try {
-        let name_surnameDOM = document.querySelector("input[name=name_surname]");
-        let ageDOM = document.querySelector("input[name=age]");
-        let chronic_diseaseDOM = document.querySelector("input[name=chronic_disease]");
-        let date_of_serviceDOM = document.querySelector("input[name=date_of_service]");
-        let initial_symptomsDOM = document.querySelector("input[name=initial_symptoms]");
-        let diagnosisDOM = document.querySelector("input[name=diagnosis]");
-        let treatment_and_medicationDOM = document.querySelector("input[name=treatment_and_medication]");
-        let appointment_dateDOM = document.querySelector("input[name=appointment_date]");
-        let attending_physicianDOM = document.querySelector("input[name=attending_physician]");
-        let appointment_detailsDOM = document.querySelector("input[name=appointment_details]");
-
-
         let userData = {
-            name_surname : name_surnameDOM.value,
-            age : ageDOM.value,
-            chronic_disease : chronic_diseaseDOM.value,
-            date_of_service : date_of_serviceDOM.value,
-            initial_symptoms : initial_symptomsDOM.value,
-            diagnosis : diagnosisDOM.value,
-            treatment_and_medication : treatment_and_medicationDOM.value,
-            appointment_date : appointment_dateDOM.value,
-            attending_physician : attending_physicianDOM.value,
-            appointment_details : appointment_detailsDOM.value
+            name_surname : document.querySelector("input[name=name_surname]").value,
+            age : document.querySelector("input[name=age]").value,
+            chronic_disease : document.querySelector("input[name=chronic_disease]").value,
+            date_of_service : document.querySelector("input[name=date_of_service]").value,
+            initial_symptoms : document.querySelector("input[name=initial_symptoms]").value,
+            diagnosis : document.querySelector("input[name=diagnosis]").value,
+            treatment_and_prescribed_medication : document.querySelector("input[name=treatment_and_prescribed_medication]").value,
+            appointment_date : document.querySelector("input[name=appointment_date]").value,
+            attending_physician : document.querySelector("input[name=attending_physician]").value,
+            appointment_details : document.querySelector("input[name=appointment_details]").value                
         };
     
         console.log("submitData", userData);
@@ -154,4 +141,3 @@ const submitData = async () => {
         messageDOM.className = "message danger";
     }
 };
-
