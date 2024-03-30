@@ -28,10 +28,10 @@ services:
     depends_on:
       - db
     networks:
-      - Project_IMS
+      - Project_MRS
 
 networks:
-  Project_IMS:
+  Project_MRS:
     driver: bridge
 
 volumes:
