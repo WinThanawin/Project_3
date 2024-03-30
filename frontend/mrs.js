@@ -5,20 +5,16 @@ window.onload = async () => {
 };
 
 const loadData = async () => {
+    console.log('loaded');
     try {
-        const response = await axios.get(`${BASE_URL}/Medical_Records_System`);
-        const Medical_Records_SystemData = response.data;
-        renderInventory(Medical_Records_SystemData);
-    } catch (error) {
-        console.error('Error loading data:', error);
-    }
-};
+        const response = await axios.get(`${BASE_URL}/MRS`);
+        console.log(response.data);
 
-const renderInventory = (Medical_Records_SystemData) => {
-    const Medical_Records_SystemDOM = document.getElementById('Medical_Records_System');
-    let htmlData = `
-        <table>
-            <tr>
+        const MRSDOM = document.getElementById('MRS');
+        if (MRSDOM) {
+            let htmlData = `<table>`;
+            htmlData += `
+                <tr>
                 <th>ID</th>
                 <th>Name-Surname</th>
                 <th>Age</th>
@@ -32,41 +28,48 @@ const renderInventory = (Medical_Records_SystemData) => {
                 <th>Attending Details</th>
                 <th>Edit</th>
                 <th>Delete</th>
-            </tr>
-    `;
+                </tr>`;
 
-    Medical_Records_SystemData.forEach(Medical_Records_System => {
-        htmlData += `
-            <tr>
-                <td>${Medical_Records_System.id}</td>
-                <td>${Medical_Records_System.name_surname}</td>
-                <td>${Medical_Records_System.age}</td>
-                <td>${Medical_Records_System.chronic_disease}</td>
-                <td>${Medical_Records_System.date_of_service}</td>
-                <td>${Medical_Records_System.initial_symptoms}</td>
-                <td>${Medical_Records_System.diagnosis}</td>
-                <td>${Medical_Records_System.treatment_and_medication}</td>
-                <td>${Medical_Records_System.appointment_date}</td>
-                <td>${Medical_Records_System.attending_physician}</td>
-                <td>${Medical_Records_System.appointment_details}</td>
-                <td><a href='Home.html?id=${Medical_Records_System.id}' class='edit-button'>Edit</a></td>
-                <td><button class='delete-button' data-id='${Medical_Records_System.id}'>Delete</button></td>
-            </tr>
-        `;
-    });
-
-    htmlData += '</table>';
-    Medical_Records_SystemDOM.innerHTML = htmlData;
-
-    Medical_Records_SystemDOM.addEventListener('click', async (event) => {
-        if (event.target.classList.contains('delete-button')) {
-            const id = event.target.dataset.id;
-            try {
-                await axios.delete(`${BASE_URL}/Medical_Records_System/${id}`);
-                loadData();
-            } catch (error) {
-                console.error('Error deleting item:', error);
+            for (let i = 0; i < response.data.length; i++) {
+                let MRS= response.data[i];
+                htmlData += `
+                    <tr> 
+                <td>${MRS.id}</td>
+                <td>${MRS.name_surname}</td>
+                <td>${MRS.age}</td>
+                <td>${MRS.chronic_disease}</td>
+                <td>${MRS.date_of_service}</td>
+                <td>${MRS.initial_symptoms}</td>
+                <td>${MRS.diagnosis}</td>
+                <td>${MRS.treatment_and_prescribed_medication}</td>
+                <td>${MRS.appointment_date}</td>
+                <td>${MRS.attending_physician}</td>
+                <td>${MRS.appointment_details}</td>
+                <td><a href="home.html?id=${MRS.id}">แก้ไข</a></td>
+                <td><button class="delete-button" data-id="${MRS.id}">ลบ</button></td>
+                    </tr>`;
             }
+
+            htmlData += '</table>';
+            MRSDOM.innerHTML = htmlData;
+
+            const deleteDOMs = document.getElementsByClassName('delete-button');
+            for (let i = 0; i < deleteDOMs.length; i++) {
+                deleteDOMs[i].addEventListener('click', async (event) => {
+                    const id = event.target.dataset.id;
+                    try {
+                        await axios.delete(`${BASE_URL}/MRS/${id}`);
+                        loadData();
+                    } catch (error) {
+                        console.log(error);
+                    }
+                });
+            }
+        } else {
+            console.log('MRSDOM not found');
         }
-    });
+    } catch (error) {
+        console.error(error);
+        // Handle error appropriately, e.g., display a message to the user
+    }
 };

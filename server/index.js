@@ -1,16 +1,15 @@
-const express = require('express')
-const bodyparser = require('body-parser')
-const mysql = require('mysql2/promise')
-const cors = require('cors')
-const app = express()
+const express = require('express');
+const bodyParser = require('body-parser');
+const mysql = require('mysql2/promise');
+const cors = require('cors');
+const app = express();
 
-app.use(bodyparser.json())
-app.use(cors())
+
+app.use(bodyParser.json());
+app.use(cors());
 
 const port = 8000;
 
-let Medical_Records_System =[]
-let count = 1;
 let conn = null;
 
 const initMYSQL = async () => {
@@ -23,54 +22,67 @@ const initMYSQL = async () => {
   });
 };
 
+
+
 const validateData = (userData) => {
   let errors = []
   if (!userData.name_surname) {
-    errors.push("กรุณากรอกชื่อ-สกุล")
+    errors.push('กรุณากรอกชื่อ-สกุล')
   }
   if (!userData.age) {
-    errors.push("กรุณากรอกอายุ")
+    errors.push('กรุณากรอกอายุ')
   }
   if (!userData.chronic_disease) {
-    errors.push("กรุณากรอกโรคประจำตัว")
+    errors.push('กรุณากรอกโรคประจำตัว')
   }
   if (!userData.date_of_service) {
-    errors.push("กรุณากรอกวันที่รับบริการ")
+    errors.push('กรุณากรอกวันที่รับบริการ')
   }
   if (!userData.initial_symptoms) {
-    errors.push("กรุณากรอกอาการเบื้องต้น")
+    errors.push('กรุณากรอกอาการเบื้องต้น')
   }
   if (!userData.diagnosis) {
-    errors.push("กรุณากรอกการวินิจฉัย")
+    errors.push('กรุณากรอกการวินิจฉัย')
   }
-  if (!userData.treatment_and_medication) {
-    errors.push("กรุณากรอกการรักษาและยาที่ให้")
+  if (!userData.treatment_and_prescribed_medication) {
+    errors.push('กรุณากรอกการรักษาและยาที่จ่าย')
   }
   if (!userData.appointment_date) {
-    errors.push("กรุณากรอกการวันที่นัด")
+    errors.push('กรุณากรอกวันนัด')
   }
   if (!userData.attending_physician) {
-    errors.push("กรุณากรอกแพทย์ที่นัด")
+    errors.push('กรุณากรอกแพทย์ผู้รักษา')
   }
   if (!userData.appointment_details) {
-    errors.push("กรุณากรอกรายละเอียดการนัด")
+    errors.push('กรุณากรอกรายละเอียดการนัด')
   }
   return errors
 }
 
-app.get('/Medical_Records_System', async (req, res) => {
-  const results = await conn.query('SELECT * FROM Medical_Records_System')
-  res.json(results[0])
+
+app.get('/MRS', async (req, res) => {
+  try {
+    const results = await conn.query('SELECT * FROM MRS');
+    res.json(results[0]);
+  } catch (error) {
+    console.error('Error message:', error.message);
+    res.status(500).json({
+      message: 'something wrong',
+      errorMessage: error.message
+    });
+  }
 });
 
-app.get('/Medical_Records_System/:id', async (req, res) => {
+app.get('/MRS/:id', async (req, res) => {
   try {
     let id = req.params.id;
-    const results = await conn.query('SELECT * FROM Medical_Records_System WHERE id = ?', id);
-    if (results.length === 0) {
+    const results = await conn.query('SELECT * FROM MRS WHERE id = ?', id);
+
+    if (results[0].length === 0) {
       throw { statusCode: 404, message: 'ไม่พบข้อมูล' };
     }
-    res.json(results[0]);
+
+    res.json(results[0][0]);
   } catch (error) {
     console.error('Error message:', error.message);
     let statusCode = error.statusCode || 500;
@@ -81,19 +93,19 @@ app.get('/Medical_Records_System/:id', async (req, res) => {
   }
 });
 
-app.post('/Medical_Records_System', async (req, res) => {
+
+app.post('/MRS', async (req, res) => {
   try {
-    let Medical_Records_System = req.body;
-    const errors = validateData(Medical_Records_System);
+    let MRS = req.body;
+    const errors = validateData(MRS);
     if (errors.length > 0) {
       throw {
-        message: "กรอกข้อมูลไม่ถูกต้อง",
+        message: "กรอกข้อมูลไม่ครบถ้วน",
         errors: errors
       };
     }
 
-    const results = await conn.query("INSERT INTO Medical_Records_System SET ?", Medical_Records_System);
-
+    const results = await conn.query("INSERT INTO MRS SET ?", MRS);
     res.json({
       message: "สร้างข้อมูลใหม่สำเร็จ",
       data: results[0]
@@ -110,46 +122,45 @@ app.post('/Medical_Records_System', async (req, res) => {
   }
 });
 
+app.put('/MRS/:id', async (req, res) => {
+  try {
+    let id = req.params.id
+    let updateUser = req.body
+    const results = await conn.query(
+      'UPDATE MRS SET ? WHERE id = ?',
+      [updateUser, id]
+    )
+    res.json({
+      message: 'อัปเดทข้อมูลสำเร็จ',
+      data: results[0]
+    })
+  } catch (error) {
+    console.error('error message', error.message)
+    res.status(500).json({
+      message: 'อัปเดทข้อมูลไม่สำเร็จ'
+    })
+  }
+})
 
-app.put('/Medical_Records_System/:id', async (req, res) => {
+
+app.delete('/MRS/:id', async (req, res) => {
   try {
     let id = req.params.id;
-    let updatedMedical_Records_System = req.body;
-    const results = await conn.query('UPDATE Medical_Records_System SET ? WHERE id = ?', [updatedMedical_Records_System, id]);
-
+    const results = await conn.query('DELETE FROM MRS WHERE id = ?', id);
     res.json({
-      message: "อัปเดตข้อมูลผู้ป่วย",
-      data: updatedMedical_Records_System
+      message: 'ลบข้อมูลสำเร็จ',
+      data: results[0]
     });
-
   } catch (error) {
-    console.error('Error message:', error.message);
-    let statusCode = error.statusCode || 500;
-    res.status(statusCode).json({
-      message: 'เกิดข้อผิดพลาดบางอย่าง',
-      errorMessage: error.message
+    console.log('errorMessage', error.message);
+    res.status(500).json({
+      message: 'ลบข้อมูลไม่สำเร็จ'
     });
   }
 });
 
 
-app.delete('/Medical_Records_System/:id', async (req, res) => {
-  try {
-    let id = req.params.id;
-    const results = await conn.query('DELETE FROM Medical_Records_System WHERE id = ?', id)
-    res.json({
-      message: 'ลบข้อมูลผู้ป่วยสำเร็จ',
-      data: results[0]
-    })
-  } catch (error) {
-    console.log('errorMessage', error.message)
-    res.status(500).json({
-      message: 'something went wrong'
-    })
-  }
-})
-
 app.listen(port, async () => {
   await initMYSQL();
-  console.log('Server is running on port',+ port);
+  console.log('Server is running on port', + port);
 });

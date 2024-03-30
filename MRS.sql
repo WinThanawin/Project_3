@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db:3306
--- Generation Time: Mar 30, 2024 at 09:52 AM
+-- Generation Time: Mar 30, 2024 at 03:29 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.8
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Medical_Records_System`
+-- Table structure for table `MRS`
 --
 
-CREATE TABLE `Medical_Records_System` (
+CREATE TABLE `MRS` (
   `id` int NOT NULL COMMENT 'เลข id',
   `name_surname` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อ-นามสกุล',
   `age` int NOT NULL COMMENT 'อายุ',
@@ -42,10 +42,10 @@ CREATE TABLE `Medical_Records_System` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `Medical_Records_System`
+-- Dumping data for table `MRS`
 --
 
-INSERT INTO `Medical_Records_System` (`id`, `name_surname`, `age`, `chronic_disease`, `date_of_service`, `initial_symptoms`, `diagnosis`, `treatment_and_prescribed_medication`, `appointment_date`, `attending_physician`, `appointment_details`) VALUES
+INSERT INTO `MRS` (`id`, `name_surname`, `age`, `chronic_disease`, `date_of_service`, `initial_symptoms`, `diagnosis`, `treatment_and_prescribed_medication`, `appointment_date`, `attending_physician`, `appointment_details`) VALUES
 (1, 'สมชาย ใจดี', 45, 'ไม่มี', '2024-03-10', 'ถ่ายเหลว', 'ท้องเสีย', 'ให้ยาแก้ท้องเสียกับยาผงถ่านไป', '2024-03-13', 'มั่งมี ศรีสุข', 'ดูอาการหลังทานยา');
 
 --
@@ -53,9 +53,9 @@ INSERT INTO `Medical_Records_System` (`id`, `name_surname`, `age`, `chronic_dise
 --
 
 --
--- Indexes for table `Medical_Records_System`
+-- Indexes for table `MRS`
 --
-ALTER TABLE `Medical_Records_System`
+ALTER TABLE `MRS`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -63,9 +63,9 @@ ALTER TABLE `Medical_Records_System`
 --
 
 --
--- AUTO_INCREMENT for table `Medical_Records_System`
+-- AUTO_INCREMENT for table `MRS`
 --
-ALTER TABLE `Medical_Records_System`
+ALTER TABLE `MRS`
   MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'เลข id', AUTO_INCREMENT=2;
 COMMIT;
 
