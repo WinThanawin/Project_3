@@ -32,17 +32,19 @@ const loadData = async () => {
 
             for (let i = 0; i < response.data.length; i++) {
                 let MRS= response.data[i];
+                let DateofServices = new Date(MRS.date_of_service).toLocaleString('th-TH');
+                let AppointmentDate = new Date(MRS.appointment_date).toLocaleString('th-TH');
                 htmlData += `
                     <tr> 
                 <td>${MRS.id}</td>
                 <td>${MRS.name_surname}</td>
                 <td>${MRS.age}</td>
                 <td>${MRS.chronic_disease}</td>
-                <td>${MRS.date_of_service}</td>
+                <td>${DateofServices}</td>
                 <td>${MRS.initial_symptoms}</td>
                 <td>${MRS.diagnosis}</td>
                 <td>${MRS.treatment_and_prescribed_medication}</td>
-                <td>${MRS.appointment_date}</td>
+                <td>${AppointmentDate}</td>
                 <td>${MRS.attending_physician}</td>
                 <td>${MRS.appointment_details}</td>
                 <td><a href="home.html?id=${MRS.id}">แก้ไข</a></td>

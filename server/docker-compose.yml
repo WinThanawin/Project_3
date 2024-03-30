@@ -13,7 +13,7 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
-      - Project_IMS
+      - Project_MRS
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest

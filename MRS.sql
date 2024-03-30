@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db:3306
--- Generation Time: Mar 30, 2024 at 03:29 PM
+-- Generation Time: Mar 30, 2024 at 04:54 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.8
 
@@ -32,11 +32,11 @@ CREATE TABLE `MRS` (
   `name_surname` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'ชื่อ-นามสกุล',
   `age` int NOT NULL COMMENT 'อายุ',
   `chronic_disease` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'โรคประจำตัว',
-  `date_of_service` date NOT NULL COMMENT 'วันที่รับบริการ',
+  `date_of_service` datetime NOT NULL COMMENT 'วันที่รับบริการ',
   `initial_symptoms` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'อาการเบื้องต้น',
   `diagnosis` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'การวินิจฉัย',
   `treatment_and_prescribed_medication` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'การรักษาและยาที่ให้',
-  `appointment_date` date NOT NULL COMMENT 'วันที่นัด',
+  `appointment_date` datetime NOT NULL COMMENT 'วันที่นัด',
   `attending_physician` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'แพทย์ที่นัด',
   `appointment_details` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'รายละเอียดการนัด'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -46,7 +46,10 @@ CREATE TABLE `MRS` (
 --
 
 INSERT INTO `MRS` (`id`, `name_surname`, `age`, `chronic_disease`, `date_of_service`, `initial_symptoms`, `diagnosis`, `treatment_and_prescribed_medication`, `appointment_date`, `attending_physician`, `appointment_details`) VALUES
-(1, 'สมชาย ใจดี', 45, 'ไม่มี', '2024-03-10', 'ถ่ายเหลว', 'ท้องเสีย', 'ให้ยาแก้ท้องเสียกับยาผงถ่านไป', '2024-03-13', 'มั่งมี ศรีสุข', 'ดูอาการหลังทานยา');
+(3, 'asdasd1', 133, 'asdasda', '2024-03-20 00:00:00', 'asdasd', 'asdzxc', 'asdasdads', '2024-03-21 00:00:00', 'asdasd', 'asdadsads'),
+(4, 'sdaasd', 2323, 'asdasd', '2024-03-05 00:00:00', 'asdasd', 'asdasd', 'asdasd', '2024-03-20 00:00:00', 'asdasd', 'asdasd'),
+(5, 'asdasd', 32, 'asdasd', '2024-03-30 00:00:00', 'asdasdad', 'asdasd', 'adsasdad', '2024-03-30 00:00:00', 'asdasd', 'asdasd'),
+(6, 'dsdfsdf', 232, 'sdadas', '2024-03-30 00:00:00', 'ghfgh', 'bnvb', 'vbnvbn', '2024-03-28 00:00:00', 'jghjgh', '6hgj7ghj');
 
 --
 -- Indexes for dumped tables
@@ -66,7 +69,7 @@ ALTER TABLE `MRS`
 -- AUTO_INCREMENT for table `MRS`
 --
 ALTER TABLE `MRS`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'เลข id', AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'เลข id', AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

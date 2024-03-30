@@ -25,7 +25,7 @@
             </div>
             <div>
                 <label for="date_of_service">Date of Service</label>
-                <input type="date" id="date_of_service" name="date_of_service" >
+                <input type="datetime-local" id="date_of_service" name="date_of_service" >
             </div>
             <div>
                 <label for="initial_symptoms">Initial Symptoms</label>
@@ -41,7 +41,7 @@
             </div>
             <div>
                 <label for="appointment_date">Appointment Date</label>
-                <input type="date" id="appointment_date" name="appointment_date" >
+                <input type="datetime-local" id="appointment_date" name="appointment_date" >
             </div>
             <div>
                 <label for="attending_physician">Attending Physician</label>
@@ -53,7 +53,7 @@
             </div>
             <div>
             <div class="center">
-                <button onclick="submitData()" class="button">Submit</button>
+                <button type="button" onclick="submitData()" class="button">Submit</button>
             </div>
         </form>
         <div id="message" class="message"></div>

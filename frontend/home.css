@@ -31,7 +31,7 @@
 
 .container form div input[type="text"],
 .container form div input[type="number"],
-.container form div input[type="date"],
+.container form div input[type="datetime-local"],
 .container form div select {
     width: calc(100% - 160px);
     padding: 8px;
