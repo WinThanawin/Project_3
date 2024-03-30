@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Form</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Medical Records System</h1>
+        <a href="mrs.html">Go To User Management</a>
+        <form> 
+            <div>
+                <label for="name_surname">Name-Surname</label>
+                <input type="text" id="name_surname" name="name_surname" >
+            </div>
+            <div>
+                <label for="age">Age</label>
+                <input type="number" id="age" name="age" >
+            </div>
+            <div>
+                <label for="chronic_disease">Chronic Disease</label>
+                <input type="text" id="chronic_disease" name="chronic_disease" >
+            </div>
+            <div>
+                <label for="date_of_service">Date of Service</label>
+                <input type="date" id="date_of_service" name="date_of_service" >
+            </div>
+            <div>
+                <label for="initial_symptoms">Initial Symptoms</label>
+                <input type="text" id="initial_symptoms" name="initial_symptoms" >
+            </div>
+            <div>
+                <label for="diagnosis">Diagnosis</label>
+                <input type="text" id="diagnosis" name="diagnosis" >
+            </div>
+            <div>
+                <label for="treatment_and_medication">Treatment and Prescribed Medication</label>
+                <input type="text" id="treatment_and_medication" name="treatment_and_medication" >
+            </div>
+            <div>
+                <label for="appointment_date">Appointment Date</label>
+                <input type="date" id="appointment_date" name="appointment_date" >
+            </div>
+            <div>
+                <label for="attending_physician">Attending Physician</label>
+                <input type="text" id="attending_physician" name="attending_physician" >
+            </div>
+            <div>
+                <label for="appointment_details">Appointment Details</label>
+                <input type="text" id="appointment_details" name="appointment_details" >
+            </div>
+            <div>
+            <div class="center">
+                <button onclick="submitData()" class="button">Submit</button>
+            </div>
+        </form>
+        <div id="message" class="message"></div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="Home.js"></script>
+</body>
+</html>
