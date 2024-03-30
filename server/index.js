@@ -65,8 +65,8 @@ app.get('/Medical_Records_System', async (req, res) => {
 
 app.get('/Medical_Records_System/:id', async (req, res) => {
   try {
-    let id = req.params.id;
-    const results = await conn.query('SELECT * FROM Medical_Records_System WHERE id = ?', id);
+    let user = req.params;
+    const results = await conn.query('SELECT * FROM Medical_Records_System WHERE id = ?', user);
     if (results.length === 0) {
       throw { statusCode: 404, message: 'ไม่พบข้อมูล' };
     }
@@ -113,9 +113,9 @@ app.post('/Medical_Records_System', async (req, res) => {
 
 app.put('/Medical_Records_System/:id', async (req, res) => {
   try {
-    let id = req.params.id;
+    let user = req.params;
     let updatedMedical_Records_System = req.body;
-    const results = await conn.query('UPDATE Medical_Records_System SET ? WHERE id = ?', [updatedMedical_Records_System, id]);
+    const results = await conn.query('UPDATE Medical_Records_System SET ? WHERE id = ?', [updatedMedical_Records_System, user]);
 
     res.json({
       message: "อัปเดตข้อมูลผู้ป่วย",
@@ -135,8 +135,8 @@ app.put('/Medical_Records_System/:id', async (req, res) => {
 
 app.delete('/Medical_Records_System/:id', async (req, res) => {
   try {
-    let id = req.params.id;
-    const results = await conn.query('DELETE FROM Medical_Records_System WHERE id = ?', id)
+    let user = req.params;
+    const results = await conn.query('DELETE FROM Medical_Records_System WHERE id = ?', user)
     res.json({
       message: 'ลบข้อมูลผู้ป่วยสำเร็จ',
       data: results[0]
