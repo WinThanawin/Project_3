@@ -1,9 +1,15 @@
+@font-face {
+    font-family: "kanit";
+    src: url("./Kanit/Kanit-Regular.ttf");
+  }
+
 .container {
     width: 50%;
     margin: auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 3px solid #ccc;
+    border-radius: 1px;
+    font-family: "kanit";
 }
 
 .container h1 {
@@ -15,12 +21,12 @@
 }
 
 .container form div {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .container form div label {
     display: inline-block;
-    width: 150px;
+    width: 300px;
 }
 
 .container form div input[type="text"],
