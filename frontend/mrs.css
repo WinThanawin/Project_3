@@ -6,8 +6,7 @@ body {
 }
 
 .header {
-    background-color: #555;
-    color: #fff;
+    color: #000000;
     padding: 20px;
     border-radius: 10px; 
     text-align: center;
@@ -79,10 +78,14 @@ table tr:hover {
 
 .edit-button {
     background-color: #28a745;
+    text-decoration: none;
+    font-size: 15px;
 }
 
 .delete-button {
     background-color: #dc3545;
+    text-decoration: none;
+    font-size: 15px;
 }
 
 .edit-button:hover, .delete-button:hover {
