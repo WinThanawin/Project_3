@@ -72,6 +72,5 @@ const loadData = async () => {
         }
     } catch (error) {
         console.error(error);
-        // Handle error appropriately, e.g., display a message to the user
     }
 };

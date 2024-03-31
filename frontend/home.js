@@ -1,6 +1,6 @@
 const BASE_URL = 'http://localhost:8000';
 
-let mode = "CREATE"; // default mode
+let mode = "CREATE";
 let selectedId = "";
 
 window.onload = async () => {
