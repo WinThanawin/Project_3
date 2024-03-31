@@ -31,24 +31,24 @@ const loadData = async () => {
                 </tr>`;
 
             for (let i = 0; i < response.data.length; i++) {
-                let MRS= response.data[i];
+                let MRS = response.data[i];
                 let DateofServices = new Date(MRS.date_of_service).toLocaleString('th-TH');
                 let AppointmentDate = new Date(MRS.appointment_date).toLocaleString('th-TH');
                 htmlData += `
                     <tr> 
-                <td>${MRS.id}</td>
-                <td>${MRS.name_surname}</td>
-                <td>${MRS.age}</td>
-                <td>${MRS.chronic_disease}</td>
-                <td>${DateofServices}</td>
-                <td>${MRS.initial_symptoms}</td>
-                <td>${MRS.diagnosis}</td>
-                <td>${MRS.treatment_and_prescribed_medication}</td>
-                <td>${AppointmentDate}</td>
-                <td>${MRS.attending_physician}</td>
-                <td>${MRS.appointment_details}</td>
-                <td><a href="home.html?id=${MRS.id}">แก้ไข</a></td>
-                <td><button class="delete-button" data-id="${MRS.id}">ลบ</button></td>
+                        <td>${MRS.id}</td>
+                        <td>${MRS.name_surname}</td>
+                        <td>${MRS.age}</td>
+                        <td>${MRS.chronic_disease}</td>
+                        <td>${DateofServices}</td>
+                        <td>${MRS.initial_symptoms}</td>
+                        <td>${MRS.diagnosis}</td>
+                        <td>${MRS.treatment_and_prescribed_medication}</td>
+                        <td>${AppointmentDate}</td>
+                        <td>${MRS.attending_physician}</td>
+                        <td>${MRS.appointment_details}</td>
+                        <td><a href="home.html?id=${MRS.id}" button class="edit-button">edit</a></td>
+                        <td><button class="delete-button" data-id="${MRS.id}">delete</button></td>
                     </tr>`;
             }
 
