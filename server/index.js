@@ -23,37 +23,36 @@ const initMYSQL = async () => {
 };
 
 
-
-const validateData = (userData) => {
+const validateData = (MRSData) => {
   let errors = []
-  if (!userData.name_surname) {
+  if (!MRSData.name_surname) {
     errors.push('กรุณากรอกชื่อ-สกุล')
   }
-  if (!userData.age) {
+  if (!MRSData.age) {
     errors.push('กรุณากรอกอายุ')
   }
-  if (!userData.chronic_disease) {
+  if (!MRSData.chronic_disease) {
     errors.push('กรุณากรอกโรคประจำตัว')
   }
-  if (!userData.date_of_service) {
+  if (!MRSData.date_of_service) {
     errors.push('กรุณากรอกวันที่รับบริการ')
   }
-  if (!userData.initial_symptoms) {
+  if (!MRSData.initial_symptoms) {
     errors.push('กรุณากรอกอาการเบื้องต้น')
   }
-  if (!userData.diagnosis) {
+  if (!MRSData.diagnosis) {
     errors.push('กรุณากรอกการวินิจฉัย')
   }
-  if (!userData.treatment_and_prescribed_medication) {
+  if (!MRSData.treatment_and_prescribed_medication) {
     errors.push('กรุณากรอกการรักษาและยาที่จ่าย')
   }
-  if (!userData.appointment_date) {
+  if (!MRSData.appointment_date) {
     errors.push('กรุณากรอกวันนัด')
   }
-  if (!userData.attending_physician) {
+  if (!MRSData.attending_physician) {
     errors.push('กรุณากรอกแพทย์ผู้รักษา')
   }
-  if (!userData.appointment_details) {
+  if (!MRSData.appointment_details) {
     errors.push('กรุณากรอกรายละเอียดการนัด')
   }
   return errors
