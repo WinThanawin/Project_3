@@ -60,7 +60,7 @@ const loadData = async () => {
                 deleteDOMs[i].addEventListener('click', async (event) => {
                     const id = event.target.dataset.id;
                     try {
-                        await axios.delete(`${BASE_URL}/MRS/${id}`);
+                        await axios.delete(`3${BASE_URL}/MRS/${id}`);
                         loadData();
                     } catch (error) {
                         console.log(error);
